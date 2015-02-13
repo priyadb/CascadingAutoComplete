@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="https://dl.dropboxusercontent.com/u/96099766/CacadingAutoComplete/Styles/select2.css" rel="stylesheet" />
+    <title>Cascading AutoComplete DropDownlist using jQuery</title>
+    <script src="https://dl.dropboxusercontent.com/u/96099766/CacadingAutoComplete/Scripts/jquery-1.9.1.js"></script>
+    <script src="https://dl.dropboxusercontent.com/u/96099766/CacadingAutoComplete/Scripts/select2.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("select[name$=ddlDept]").val('Select Department');           
+            var $ddl = $("#ddlDept");
+            $ddl.select2();
+            var $ddlSub = $("#ddlSub");
+            $ddlSub.select2();
+            $ddl.focus();
+            $ddl.bind("change keyup", function () {
+                printSub($("select option:selected").val());
+                $ddlSub.fadeIn("slow");
+            });
+        });
+
+        function printSub(dval) {
+            var d = dval;
+            $("#ddlSub > option").remove();
+            $("select[name*=ddlSub]").append(
+                $("<option></option>").val("Select Subject").html("Select Subject")
+                );
+            if (d=='AE') {
+                $("#ddlSub").css('display', 'block');
+                
+                $("#ddlSub").append(
+                    $("<option></option>").val('FM').html('Fluid Mechanics')
+                );
+                $("#ddlSub").append(
+                   $("<option></option>").val('AS').html('Aircraft System')
+               );
+                $("#ddlSub").append(
+                   $("<option></option>").val('HT').html('Helicopter Theory')
+               );
+            }
+            else if (d == 'BME') {
+                $("#ddlSub").css('display', 'block');       
+                $("#ddlSub").append(
+                    $("<option></option>").val('BAT').html('Bio Analytical Techniques')
+                );
+                $("#ddlSub").append(
+                   $("<option></option>").val('BSP').html('Bio Signal Processing')
+               );                
+            }
+            else if (d == 'CSE') {
+                $("#ddlSub").css('display', 'block');
+                $("#ddlSub").append(
+                    $("<option></option>").val('DSA').html('Data Structures & Algorithms')
+                );
+                $("#ddlSub").append(
+                   $("<option></option>").val('CA').html('Computer Architecture')
+               );
+                $("#ddlSub").append(
+                   $("<option></option>").val('AI').html('Artificial Intelligence')
+               );
+                $("#ddlSub").append(
+                    $("<option></option>").val('FOC').html('Fundamentals of Computing')
+                );
+            }
+            else if (d == 'IT') {
+                $("#ddlSub").css('display', 'block');
+                $("#ddlSub").append(
+                    $("<option></option>").val('NM').html('Numerical Methods')
+                );
+                $("#ddlSub").append(
+                   $("<option></option>").val('FOC').html('Fundamentals of Computing')
+               );
+                $("#ddlSub").append(
+                   $("<option></option>").val('POC').html('Priciples of Communication')
+               );
+
+            }
+            else if (d == 'MECH') {
+                $("#ddlSub").css('display', 'block');
+                $("#ddlSub").append(
+                    $("<option></option>").val('MC').html('Measurements and Controls')
+                );
+                $("#ddlSub").append(
+                   $("<option></option>").val('MT').html('Machine Tools')
+               );               
+            }
+            else if (d == 'ECE') {
+                $("#ddlSub").css('display', 'block');
+                $("#ddlSub").append(
+                    $("<option></option>").val('EDC').html('Electronic Devices & Circuits')
+                );
+                $("#ddlSub").append(
+                   $("<option></option>").val('EMT').html('Electro Magnetic Theory')
+               );
+            }
+            $("#ddlSub").select2();
+        }
+
+    </script>
+    <style type="text/css">
+        .centered {
+            width:800px;
+            margin-left:auto;
+            margin-right:auto;
+        }
+    </style>
+</head>
+<body class="centered">
+    <div style="text-align:center">
+         <h1>Cascading AutoComplete in ASP.NET using jQuery</h1>
+		 <p style="text-align:center;">Demo by Priya Darshini - Tutorial @ <a href="javascript:parent.window.location.href='http://www.programming-free.com/2013/05/aspnet-ajax-cascading-dropdownlist-with.html'">Programmingfree</a></p>                     
+             
+        Select Department : 
+        <select name="ddlDept" id="ddlDept" style="width:280px">
+            <option>Select Department</option>
+            <option value="AE">Aeronautical Engineering</option>
+            <option value="BME">Biomedical Engineering</option>
+            <option value="CSE">Computer Science Engineering</option>
+            <option value="IT">Information Technology</option>
+            <option value="MECH">Mechanical Engineering</option>
+            <option value="ECE">Electronics and Communication Engineering</option>
+        </select><br />
+        <br />
+        Select Subject:
+        <select name="ddlSub" id="ddlSub" style="width:280px">
+            <option>Select Subject</option>
+        </select>
+    </div>
+</body>
+</html>
